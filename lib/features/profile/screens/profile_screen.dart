@@ -7,6 +7,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../core/utils/constants.dart';
 import '../../../core/widgets/premium_card.dart';
 import '../../auth/providers/auth_provider.dart';
+import '../../home/providers/daily_task_provider.dart';
 import '../../progress/providers/progress_provider.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -113,30 +114,34 @@ class ProfileScreen extends ConsumerWidget {
 
                 // Quick stats
                 progressAsync.when(
-                  data: (progress) => Row(
-                    children: [
-                      _QuickStat(
-                        value: '${progress.totalExercisesCompleted}',
-                        label: 'Exercises',
-                        icon: Icons.check_circle_outline_rounded,
-                        color: AppColors.success,
-                      ),
-                      const SizedBox(width: AppSpacing.sm),
-                      _QuickStat(
-                        value: '${progress.currentStreak}',
-                        label: 'Streak',
-                        icon: Icons.local_fire_department_rounded,
-                        color: AppColors.warning,
-                      ),
-                      const SizedBox(width: AppSpacing.sm),
-                      _QuickStat(
-                        value: '${progress.mockExamResults.length}',
-                        label: 'Exams',
-                        icon: Icons.assignment_turned_in_rounded,
-                        color: AppColors.primaryBlue,
-                      ),
-                    ],
-                  ),
+                  data: (progress) {
+                    final dailyStreak =
+                        ref.watch(dailyTaskProvider).valueOrNull?.streak ?? 0;
+                    return Row(
+                      children: [
+                        _QuickStat(
+                          value: '${progress.totalExercisesCompleted}',
+                          label: 'Exercises',
+                          icon: Icons.check_circle_outline_rounded,
+                          color: AppColors.success,
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        _QuickStat(
+                          value: '$dailyStreak',
+                          label: 'Streak',
+                          icon: Icons.local_fire_department_rounded,
+                          color: AppColors.warning,
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        _QuickStat(
+                          value: '${progress.mockExamResults.length}',
+                          label: 'Exams',
+                          icon: Icons.assignment_turned_in_rounded,
+                          color: AppColors.primaryBlue,
+                        ),
+                      ],
+                    );
+                  },
                   loading: () => const SizedBox.shrink(),
                   error: (_, __) => const SizedBox.shrink(),
                 ),

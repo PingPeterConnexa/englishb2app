@@ -51,7 +51,7 @@ class _DailyTaskScreenState extends ConsumerState<DailyTaskScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Daily Task · Day $dayIndex',
+          'Daily Task',
           style: AppTypography.headline.copyWith(
             color: isDark
                 ? AppColors.textPrimaryDark

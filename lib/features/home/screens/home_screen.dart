@@ -72,79 +72,87 @@ class HomeScreen extends ConsumerWidget {
 
                 // Exam readiness card
                 progressAsync.when(
-                  data: (progress) => PremiumCard(
-                    gradient: AppColors.primaryGradient,
-                    padding: const EdgeInsets.all(AppSpacing.lg),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Exam Readiness',
-                                style: AppTypography.headline.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.8),
-                                ),
-                              ),
-                              const SizedBox(height: AppSpacing.xs),
-                              Text(
-                                '${(progress.examReadiness * 100).round()}%',
-                                style: AppTypography.largeTitle.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              const SizedBox(height: AppSpacing.sm),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: AppSpacing.sm,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: 0.2),
-                                  borderRadius: BorderRadius.circular(
-                                      AppSpacing.radiusFull),
-                                ),
-                                child: Text(
-                                  '${progress.currentStreak} day streak',
-                                  style: AppTypography.caption1.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
+                  data: (progress) {
+                    final dailyAsync = ref.watch(dailyTaskProvider);
+                    final dailyStreak = dailyAsync.valueOrNull?.streak ?? 0;
+                    return PremiumCard(
+                      gradient: AppColors.primaryGradient,
+                      padding: const EdgeInsets.all(AppSpacing.lg),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Exam Readiness',
+                                  style: AppTypography.headline.copyWith(
+                                    color:
+                                        Colors.white.withValues(alpha: 0.8),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        ProgressRing(
-                          progress: progress.examReadiness,
-                          size: 100,
-                          strokeWidth: 8,
-                          color: Colors.white,
-                          backgroundColor: Colors.white.withValues(alpha: 0.2),
-                          center: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                '${(progress.examReadiness * 100).round()}%',
-                                style: AppTypography.title3.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
+                                const SizedBox(height: AppSpacing.xs),
+                                Text(
+                                  '${(progress.examReadiness * 100).round()}%',
+                                  style: AppTypography.largeTitle.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'ready',
-                                style: AppTypography.caption2.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.8),
+                                const SizedBox(height: AppSpacing.sm),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: AppSpacing.sm,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Colors.white.withValues(alpha: 0.2),
+                                    borderRadius: BorderRadius.circular(
+                                        AppSpacing.radiusFull),
+                                  ),
+                                  child: Text(
+                                    '$dailyStreak day streak',
+                                    style: AppTypography.caption1.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                          ProgressRing(
+                            progress: progress.examReadiness,
+                            size: 100,
+                            strokeWidth: 8,
+                            color: Colors.white,
+                            backgroundColor:
+                                Colors.white.withValues(alpha: 0.2),
+                            center: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  '${(progress.examReadiness * 100).round()}%',
+                                  style: AppTypography.title3.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(
+                                  'ready',
+                                  style: AppTypography.caption2.copyWith(
+                                    color:
+                                        Colors.white.withValues(alpha: 0.8),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                   loading: () => const SizedBox(
                     height: 140,
                     child: Center(child: CircularProgressIndicator()),
@@ -199,7 +207,7 @@ class HomeScreen extends ConsumerWidget {
                                     Text(
                                       done
                                           ? 'Completed'
-                                          : 'Day ${task.dayIndex} Challenge',
+                                          : 'Daily Task',
                                       style: AppTypography.headline.copyWith(
                                         color: isDark
                                             ? AppColors.textPrimaryDark
