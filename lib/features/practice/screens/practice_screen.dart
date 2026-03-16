@@ -46,7 +46,7 @@ class PracticeScreen extends StatelessWidget {
                   subtitle: 'Comprehension, main ideas, detail questions',
                   icon: Icons.auto_stories_rounded,
                   color: AppColors.reading,
-                  exerciseCount: 4,
+                  exerciseCount: 12,
                   onTap: () {
                     HapticUtils.light();
                     context.go('/practice/exercise/reading');
@@ -59,7 +59,7 @@ class PracticeScreen extends StatelessWidget {
                   subtitle: 'Grammar, gap fill, sentence transformation',
                   icon: Icons.edit_note_rounded,
                   color: AppColors.grammar,
-                  exerciseCount: 8,
+                  exerciseCount: 20,
                   onTap: () {
                     HapticUtils.light();
                     context.go('/practice/exercise/useOfEnglish');
