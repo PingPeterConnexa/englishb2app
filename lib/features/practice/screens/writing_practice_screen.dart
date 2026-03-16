@@ -118,6 +118,7 @@ class _WritingPracticeScreenState extends ConsumerState<WritingPracticeScreen> {
                             _feedback = null;
                             _errorMessage = null;
                             _showImproved = false;
+                            _writingController.clear();
                           });
                         }
                       },

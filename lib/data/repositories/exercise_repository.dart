@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../content/mock_exam_exercises.dart';
 import '../content/sample_exercises.dart';
 import '../models/exercise_model.dart';
 
@@ -15,11 +16,7 @@ class ExerciseRepository {
 
   Future<List<ExerciseModel>> getMockExamExercises() async {
     await Future.delayed(const Duration(milliseconds: 500));
-    return [
-      ...SampleExercises.readingExercises.take(2),
-      ...SampleExercises.useOfEnglishExercises.take(4),
-      ...SampleExercises.listeningExercises.take(2),
-    ];
+    return MockExamExercises.getAllExamExercises();
   }
 
   Future<List<WritingPromptModel>> getWritingPrompts() async {
