@@ -9,6 +9,7 @@ import '../../../core/widgets/premium_card.dart';
 import '../../../core/widgets/progress_ring.dart';
 import '../../../core/widgets/lesson_card.dart';
 import '../../progress/providers/progress_provider.dart';
+import '../providers/daily_task_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -153,9 +154,9 @@ class HomeScreen extends ConsumerWidget {
 
                 const SizedBox(height: AppSpacing.lg),
 
-                // Daily Practice
+                // Daily Task
                 Text(
-                  'Daily Practice',
+                  'Daily Task',
                   style: AppTypography.title3.copyWith(
                     color: isDark
                         ? AppColors.textPrimaryDark
@@ -164,50 +165,75 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: AppSpacing.md),
 
-                PremiumCard(
-                  onTap: () => context.go('/practice/exercise/useOfEnglish'),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 48,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          gradient: AppColors.accentGradient,
-                          borderRadius:
-                              BorderRadius.circular(AppSpacing.radiusMd),
-                        ),
-                        child: const Icon(Icons.bolt_rounded,
-                            color: Colors.white, size: 24),
-                      ),
-                      const SizedBox(width: AppSpacing.md),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Quick Grammar Drill',
-                              style: AppTypography.headline.copyWith(
-                                color: isDark
-                                    ? AppColors.textPrimaryDark
-                                    : AppColors.textPrimaryLight,
+                ref.watch(dailyTaskProvider).when(
+                      data: (task) {
+                        final done = task.isCompletedToday;
+                        return PremiumCard(
+                          onTap: () => context.push('/daily-task'),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 48,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  gradient: done
+                                      ? AppColors.successGradient
+                                      : AppColors.accentGradient,
+                                  borderRadius: BorderRadius.circular(
+                                      AppSpacing.radiusMd),
+                                ),
+                                child: Icon(
+                                  done
+                                      ? Icons.check_rounded
+                                      : Icons.bolt_rounded,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
                               ),
-                            ),
-                            Text(
-                              '5 questions · ~3 min',
-                              style: AppTypography.footnote.copyWith(
-                                color: isDark
-                                    ? AppColors.textSecondaryDark
-                                    : AppColors.textSecondaryLight,
+                              const SizedBox(width: AppSpacing.md),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      done
+                                          ? 'Completed'
+                                          : 'Day ${task.dayIndex} Challenge',
+                                      style: AppTypography.headline.copyWith(
+                                        color: isDark
+                                            ? AppColors.textPrimaryDark
+                                            : AppColors.textPrimaryLight,
+                                      ),
+                                    ),
+                                    Text(
+                                      done
+                                          ? 'Come back tomorrow · ${task.streak} day streak'
+                                          : '1 question · ~1 min',
+                                      style: AppTypography.footnote.copyWith(
+                                        color: isDark
+                                            ? AppColors.textSecondaryDark
+                                            : AppColors.textSecondaryLight,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
+                              done
+                                  ? const Icon(Icons.check_circle_rounded,
+                                      color: AppColors.success, size: 40)
+                                  : Icon(Icons.play_circle_fill_rounded,
+                                      color: AppColors.primaryBlue, size: 40),
+                            ],
+                          ),
+                        );
+                      },
+                      loading: () => const SizedBox(
+                        height: 72,
+                        child: Center(child: CircularProgressIndicator()),
                       ),
-                      Icon(Icons.play_circle_fill_rounded,
-                          color: AppColors.primaryBlue, size: 40),
-                    ],
-                  ),
-                ),
+                      error: (_, __) => const SizedBox.shrink(),
+                    ),
 
                 const SizedBox(height: AppSpacing.lg),
 

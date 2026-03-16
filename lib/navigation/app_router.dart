@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../features/auth/screens/onboarding_screen.dart';
 import '../features/auth/screens/login_screen.dart';
+import '../features/home/screens/daily_task_screen.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/practice/screens/practice_screen.dart';
 import '../features/practice/screens/exercise_screen.dart';
@@ -29,6 +30,11 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/login',
       builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      path: '/daily-task',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const DailyTaskScreen(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {

@@ -15,7 +15,7 @@ class AppConstants {
   static const listeningSectionMinutes = 25;
   static const writingSectionMinutes = 20;
 
-  static const maxStreak = 365;
+  static const maxStreak = 31;
   static const exercisesPerLesson = 10;
   static const passThreshold = 0.6;
   static const excellentThreshold = 0.85;
