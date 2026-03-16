@@ -7,6 +7,7 @@ import '../../../core/utils/haptic_utils.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/result_card.dart';
 import '../../../data/models/exercise_model.dart';
+import '../../progress/providers/progress_provider.dart';
 import '../providers/practice_provider.dart';
 
 class ExerciseScreen extends ConsumerStatefulWidget {
@@ -62,6 +63,7 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
           icon: const Icon(Icons.close_rounded),
           onPressed: () {
             ref.read(exerciseSessionProvider.notifier).reset();
+            ref.invalidate(progressProvider);
             Navigator.of(context).pop();
           },
         ),
@@ -316,6 +318,7 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
           icon: const Icon(Icons.close_rounded),
           onPressed: () {
             ref.read(exerciseSessionProvider.notifier).reset();
+            ref.invalidate(progressProvider);
             Navigator.of(context).pop();
           },
         ),
@@ -336,6 +339,7 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
               label: 'Done',
               onPressed: () {
                 ref.read(exerciseSessionProvider.notifier).reset();
+                ref.invalidate(progressProvider);
                 Navigator.of(context).pop();
               },
             ),

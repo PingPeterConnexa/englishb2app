@@ -227,7 +227,7 @@ class HomeScreen extends ConsumerWidget {
                   subtitle: '8 exercises · B2 level',
                   icon: Icons.auto_stories_rounded,
                   color: AppColors.reading,
-                  progress: 0.3,
+                  progress: 0.0,
                   onTap: () => context.go('/practice/exercise/reading'),
                 ),
                 const SizedBox(height: AppSpacing.sm),
@@ -247,7 +247,7 @@ class HomeScreen extends ConsumerWidget {
                   subtitle: '6 exercises · B2 level',
                   icon: Icons.headphones_rounded,
                   color: AppColors.listening,
-                  progress: 0.5,
+                  progress: 0.0,
                   onTap: () => context.go('/practice/exercise/listening'),
                 ),
 
