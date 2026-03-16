@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/services/tts_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/utils/haptic_utils.dart';
+import '../../../core/widgets/audio_passage_card.dart';
 import '../../../core/widgets/exam_timer.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../providers/mock_exam_provider.dart';
@@ -114,27 +116,8 @@ class ExamSessionScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.lg),
 
-                    // Passage
                     if (exercise.passage != null) ...[
-                      Container(
-                        padding: const EdgeInsets.all(AppSpacing.md),
-                        decoration: BoxDecoration(
-                          color: isDark
-                              ? AppColors.surfaceDark
-                              : AppColors.dividerLight,
-                          borderRadius:
-                              BorderRadius.circular(AppSpacing.radiusMd),
-                        ),
-                        child: Text(
-                          exercise.passage!,
-                          style: AppTypography.subheadline.copyWith(
-                            color: isDark
-                                ? AppColors.textSecondaryDark
-                                : AppColors.textSecondaryLight,
-                            height: 1.6,
-                          ),
-                        ),
-                      ),
+                      AudioPassageCard(passage: exercise.passage!),
                       const SizedBox(height: AppSpacing.lg),
                     ],
 
@@ -318,8 +301,10 @@ class ExamSessionScreen extends ConsumerWidget {
                         exam.currentIndex < exam.exercises.length - 1
                             ? 'Next Question'
                             : 'Finish Exam',
-                    onPressed: () =>
-                        ref.read(mockExamProvider.notifier).nextQuestion(),
+                    onPressed: () {
+                        ref.read(ttsProvider.notifier).stop();
+                        ref.read(mockExamProvider.notifier).nextQuestion();
+                    },
                   ),
                 ),
               ),
@@ -366,6 +351,7 @@ class ExamSessionScreen extends ConsumerWidget {
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
+              ref.read(ttsProvider.notifier).stop();
               ref.read(mockExamProvider.notifier).reset();
               context.go('/mock-exam');
             },

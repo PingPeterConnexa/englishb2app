@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/services/tts_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/utils/haptic_utils.dart';
+import '../../../core/widgets/audio_passage_card.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/result_card.dart';
 import '../../../data/models/exercise_model.dart';
@@ -62,6 +64,7 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
           onPressed: () {
+            ref.read(ttsProvider.notifier).stop();
             ref.read(exerciseSessionProvider.notifier).reset();
             ref.invalidate(progressProvider);
             Navigator.of(context).pop();
@@ -96,27 +99,8 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
                   ),
                   const SizedBox(height: AppSpacing.md),
 
-                  // Passage if exists
                   if (exercise.passage != null) ...[
-                    Container(
-                      padding: const EdgeInsets.all(AppSpacing.md),
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? AppColors.surfaceDark
-                            : AppColors.dividerLight,
-                        borderRadius:
-                            BorderRadius.circular(AppSpacing.radiusMd),
-                      ),
-                      child: Text(
-                        exercise.passage!,
-                        style: AppTypography.subheadline.copyWith(
-                          color: isDark
-                              ? AppColors.textSecondaryDark
-                              : AppColors.textSecondaryLight,
-                          height: 1.6,
-                        ),
-                      ),
-                    ),
+                    AudioPassageCard(passage: exercise.passage!),
                     const SizedBox(height: AppSpacing.lg),
                   ],
 
@@ -317,6 +301,7 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
           onPressed: () {
+            ref.read(ttsProvider.notifier).stop();
             ref.read(exerciseSessionProvider.notifier).reset();
             ref.invalidate(progressProvider);
             Navigator.of(context).pop();
@@ -338,6 +323,7 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
             PrimaryButton(
               label: 'Done',
               onPressed: () {
+                ref.read(ttsProvider.notifier).stop();
                 ref.read(exerciseSessionProvider.notifier).reset();
                 ref.invalidate(progressProvider);
                 Navigator.of(context).pop();

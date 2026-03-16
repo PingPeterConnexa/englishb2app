@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/services/tts_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/utils/haptic_utils.dart';
+import '../../../core/widgets/audio_passage_card.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../data/models/exercise_model.dart';
 import '../providers/daily_task_provider.dart';
@@ -60,7 +62,10 @@ class _DailyTaskScreenState extends ConsumerState<DailyTaskScreen> {
         ),
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
-          onPressed: () => context.pop(),
+          onPressed: () {
+            ref.read(ttsProvider.notifier).stop();
+            context.pop();
+          },
         ),
       ),
       body: Column(
@@ -74,25 +79,7 @@ class _DailyTaskScreenState extends ConsumerState<DailyTaskScreen> {
                   const SizedBox(height: AppSpacing.lg),
 
                   if (exercise.passage != null) ...[
-                    Container(
-                      padding: const EdgeInsets.all(AppSpacing.md),
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? AppColors.surfaceDark
-                            : AppColors.dividerLight,
-                        borderRadius:
-                            BorderRadius.circular(AppSpacing.radiusMd),
-                      ),
-                      child: Text(
-                        exercise.passage!,
-                        style: AppTypography.subheadline.copyWith(
-                          color: isDark
-                              ? AppColors.textSecondaryDark
-                              : AppColors.textSecondaryLight,
-                          height: 1.6,
-                        ),
-                      ),
-                    ),
+                    AudioPassageCard(passage: exercise.passage!),
                     const SizedBox(height: AppSpacing.lg),
                   ],
 
