@@ -98,8 +98,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               title: 'Third-Party Services',
               content:
                   'We use the following third-party services:\n\n'
-                  '• Firebase (Authentication, Database, Analytics)\n'
-                  '• Apple Sign-In\n\n'
+                  '• Firebase (Authentication, Database, Analytics)\n\n'
                   'Each service has its own privacy policy governing data handling.',
             ),
 

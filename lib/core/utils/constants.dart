@@ -1,10 +1,10 @@
 class AppConstants {
   AppConstants._();
 
-  static const appName = 'B2 Exam Prep';
-  static const appTagline = 'Master your B2 English';
+  static const appName = 'LevelUp English B2';
+  static const appTagline = 'Level up your English to B2';
   static const appDescription =
-      'Designed to help learners prepare for B2-level English exams similar to Cambridge First.';
+      'Prepare for B2-level English exams with practice, mock tests, and clear progress tracking.';
   static const disclaimer =
       'This application is not affiliated with or endorsed by Cambridge Assessment English.';
   static const privacyPolicyUrl = 'https://www.connexa-gmbh.ch/privacy-policy';

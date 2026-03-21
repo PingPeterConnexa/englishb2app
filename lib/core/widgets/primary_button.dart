@@ -27,11 +27,11 @@ class PrimaryButton extends StatelessWidget {
       width: isExpanded ? double.infinity : null,
       height: 56,
       child: ElevatedButton(
-        onPressed: isLoading
+        onPressed: (isLoading || onPressed == null)
             ? null
             : () {
                 HapticUtils.light();
-                onPressed?.call();
+                onPressed!();
               },
         style: ElevatedButton.styleFrom(
           backgroundColor:

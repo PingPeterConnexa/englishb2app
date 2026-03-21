@@ -16,12 +16,12 @@ class SampleExercises {
           'in urban gardening programs report improved mental health, stronger community bonds, '
           'and a deeper understanding of sustainable living practices.',
       answers: [
-        'Environmental regulations require them',
         'City dwellers want to reconnect with nature and control their food',
+        'Environmental regulations require them',
         'Property values increase near gardens',
         'Schools require gardening as part of their curriculum',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 0,
       explanation:
           'The passage states "The primary driving force behind this trend is the growing desire among city dwellers to reconnect with nature and take control of their food sources."',
       difficulty: Difficulty.medium,
@@ -111,12 +111,12 @@ class SampleExercises {
           'Fashion brands are beginning to take notice, with several luxury houses launching '
           'their own resale programmes.',
       answers: [
-        'It allows people to buy luxury items at full price',
         'It significantly reduces the environmental footprint of clothing',
+        'It allows people to buy luxury items at full price',
         'It forces fashion brands to lower their prices',
         'It is only popular among older consumers',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 0,
       explanation:
           'The passage states the "greatest appeal lies in the environmental impact," specifically reducing carbon footprint by up to 30%.',
       difficulty: Difficulty.medium,
@@ -136,11 +136,11 @@ class SampleExercises {
           'the US have responded by pushing start times to 8:30 a.m. or later, with promising results.',
       answers: [
         'To argue that schools should be abolished',
-        'To highlight the problem of teen sleep deprivation and its consequences',
         'To advertise a new sleep product for teenagers',
+        'To highlight the problem of teen sleep deprivation and its consequences',
         'To criticise parents for not monitoring bedtimes',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 2,
       explanation:
           'The passage presents data on teen sleep deprivation, identifies causes, describes consequences, and mentions responses — all focused on highlighting the problem.',
       difficulty: Difficulty.medium,
@@ -160,11 +160,11 @@ class SampleExercises {
           'beyond repair.',
       answers: [
         'Social media is too dangerous for businesses to use',
-        'Social media has both significant benefits and serious risks',
         'Social media only helps large corporations',
+        'Social media has both significant benefits and serious risks',
         'Social media is the only way to market a business',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 2,
       explanation:
           '"Double-edged sword" is an idiom meaning something that has both positive and negative effects. The passage then illustrates both sides.',
       difficulty: Difficulty.medium,
@@ -184,11 +184,11 @@ class SampleExercises {
           'a figure that dwarfs many other global health threats.',
       answers: [
         'To show that pollution is a new problem',
-        'To illustrate a historical event that prompted action, contrasting it with today\'s invisible threat',
-        'To argue that London still has the worst air quality',
         'To suggest that legislation is unnecessary',
+        'To argue that London still has the worst air quality',
+        'To illustrate a historical event that prompted action, contrasting it with today\'s invisible threat',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 3,
       explanation:
           'The Great Smog is used as a historical reference point that led to action, contrasting with modern "invisible" pollution that is harder to address.',
       difficulty: Difficulty.hard,
@@ -256,11 +256,11 @@ class SampleExercises {
           'adaptability rather than clinging to tradition.',
       answers: [
         'Libraries will close within the next few years',
-        'Libraries are thriving by reinventing themselves as versatile community spaces',
-        'Libraries should focus exclusively on lending books',
         'Only Finnish libraries have managed to stay relevant',
+        'Libraries should focus exclusively on lending books',
+        'Libraries are thriving by reinventing themselves as versatile community spaces',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 3,
       explanation:
           'The passage describes libraries as "experiencing a renaissance" by becoming "community hubs" and emphasises "adaptability" as the key.',
       difficulty: Difficulty.medium,
@@ -358,8 +358,8 @@ class SampleExercises {
     ExerciseModel(
       id: 'ue6',
       question: 'I wish I _____ more time to finish the assignment.',
-      answers: ['have', 'had', 'would have', 'am having'],
-      correctAnswerIndex: 1,
+      answers: ['have', 'am having', 'would have', 'had'],
+      correctAnswerIndex: 3,
       explanation:
           'After "wish" referring to a present situation we want to be different, we use the past simple.',
       difficulty: Difficulty.easy,
@@ -369,8 +369,8 @@ class SampleExercises {
     ExerciseModel(
       id: 'ue7',
       question: 'She spoke _____ quickly that nobody could follow her presentation.',
-      answers: ['too', 'so', 'such', 'enough'],
-      correctAnswerIndex: 1,
+      answers: ['so', 'too', 'such', 'enough'],
+      correctAnswerIndex: 0,
       explanation:
           '"So + adjective/adverb + that" is the correct structure here. "So quickly that…" expresses result.',
       difficulty: Difficulty.easy,
@@ -430,8 +430,8 @@ class SampleExercises {
     ExerciseModel(
       id: 'ue12',
       question: 'He apologised _____ arriving late to the meeting.',
-      answers: ['about', 'for', 'of', 'to'],
-      correctAnswerIndex: 1,
+      answers: ['about', 'of', 'for', 'to'],
+      correctAnswerIndex: 2,
       explanation:
           '"Apologise for + gerund" is the fixed collocation. "He apologised for arriving late."',
       difficulty: Difficulty.easy,
@@ -468,8 +468,8 @@ class SampleExercises {
     ExerciseModel(
       id: 'ue15',
       question: 'It\'s high time the government _____ action on climate change.',
-      answers: ['takes', 'took', 'has taken', 'will take'],
-      correctAnswerIndex: 1,
+      answers: ['takes', 'will take', 'has taken', 'took'],
+      correctAnswerIndex: 3,
       explanation:
           '"It\'s high time + past simple" is a fixed structure expressing that something should have happened already.',
       difficulty: Difficulty.hard,
@@ -506,8 +506,8 @@ class SampleExercises {
     ExerciseModel(
       id: 'ue18',
       question: 'I\'d rather you _____ me the truth yesterday.',
-      answers: ['told', 'had told', 'tell', 'would tell'],
-      correctAnswerIndex: 1,
+      answers: ['told', 'would tell', 'tell', 'had told'],
+      correctAnswerIndex: 3,
       explanation:
           '"I\'d rather + subject + past perfect" is used to express a preference about a past action that didn\'t happen.',
       difficulty: Difficulty.hard,
@@ -528,8 +528,8 @@ class SampleExercises {
     ExerciseModel(
       id: 'ue20',
       question: 'There\'s no point _____ about things you can\'t change.',
-      answers: ['to worry', 'worrying', 'worry', 'to be worried'],
-      correctAnswerIndex: 1,
+      answers: ['to worry', 'to be worried', 'worry', 'worrying'],
+      correctAnswerIndex: 3,
       explanation:
           '"There\'s no point + gerund" is a fixed expression meaning it is useless to do something.',
       difficulty: Difficulty.easy,

@@ -11,7 +11,7 @@ class LinguaB2App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
-      title: 'B2 Exam Prep',
+      title: 'LevelUp English B2',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,

@@ -38,16 +38,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> signInWithApple() async {
-    state = state.copyWith(status: AuthStatus.loading);
-    try {
-      final user = await _repository.signInWithApple();
-      state = AuthState(status: AuthStatus.authenticated, user: user);
-    } catch (e) {
-      state = AuthState(status: AuthStatus.error, error: e.toString());
-    }
-  }
-
   Future<void> signUp(String email, String password, String name) async {
     state = state.copyWith(status: AuthStatus.loading);
     try {
@@ -68,12 +58,21 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = const AuthState(status: AuthStatus.unauthenticated);
   }
 
+  void clearError() {
+    if (state.error != null || state.status == AuthStatus.error) {
+      state = state.copyWith(
+        error: null,
+        status: AuthStatus.unauthenticated,
+      );
+    }
+  }
+
   void skipAuth() {
     state = AuthState(
       status: AuthStatus.authenticated,
       user: UserModel(
         userId: 'guest',
-        email: 'guest@linguab2.app',
+        email: 'guest@levelup-english.app',
         displayName: 'Guest',
         createdAt: DateTime.now(),
         hasCompletedOnboarding: true,

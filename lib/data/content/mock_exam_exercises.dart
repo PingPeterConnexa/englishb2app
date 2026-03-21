@@ -40,12 +40,12 @@ class MockExamExercises {
           'chain, ultimately reaching human plates. A recent study estimated that the average person '
           'consumes approximately five grams of plastic per week — roughly the weight of a credit card.',
       answers: [
-        'They are only found in oceans',
         'They absorb and concentrate toxic chemicals that enter the food chain',
+        'They are only found in oceans',
         'They are too small to be detected by scientists',
         'They only affect marine life, not humans',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 0,
       explanation:
           'The passage explains microplastics are "insidious" because of "their ability to absorb toxic chemicals" which then "accumulate up the food chain."',
       difficulty: Difficulty.medium,
@@ -88,12 +88,12 @@ class MockExamExercises {
           'consumers. Some experts argue that the current EV revolution risks creating a new kind of '
           'inequality — a green divide between those who can afford clean transport and those who cannot.',
       answers: [
-        'EVs are equally accessible everywhere in the world',
-        'Developing countries don\'t need electric vehicles',
         'The EV transition may widen inequality between rich and poor nations',
+        'Developing countries don\'t need electric vehicles',
+        'EVs are equally accessible everywhere in the world',
         'Battery prices are the only obstacle to EV adoption',
       ],
-      correctAnswerIndex: 2,
+      correctAnswerIndex: 0,
       explanation:
           'The passage warns of "a green divide between those who can afford clean transport and those who cannot," implying widening inequality.',
       difficulty: Difficulty.hard,
@@ -114,10 +114,10 @@ class MockExamExercises {
       answers: [
         'The Mediterranean diet has been proven unhealthy',
         'Only the food, not the lifestyle, matters for health',
-        'The health benefits may come from lifestyle habits as much as the food',
         'Olive oil is the single most important health factor',
+        'The health benefits may come from lifestyle habits as much as the food',
       ],
-      correctAnswerIndex: 2,
+      correctAnswerIndex: 3,
       explanation:
           'The passage states "the benefits may be as much about lifestyle as food" and that "social and behavioural habits contribute to longevity just as much as the food itself."',
       difficulty: Difficulty.hard,
@@ -137,11 +137,11 @@ class MockExamExercises {
           'sometimes resist, fearing damage to livestock and loss of productive agricultural land.',
       answers: [
         'Rewilding is universally opposed by European communities',
-        'Rewilding aims to restore ecosystems and offers multiple benefits despite some opposition',
-        'Rewilding only works in the Netherlands',
         'Rewilding is solely focused on reintroducing predators',
+        'Rewilding only works in the Netherlands',
+        'Rewilding aims to restore ecosystems and offers multiple benefits despite some opposition',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 3,
       explanation:
           'The passage describes rewilding\'s goals and multiple benefits while acknowledging opposition from farmers, showing it offers multiple benefits despite resistance.',
       difficulty: Difficulty.medium,
@@ -154,8 +154,8 @@ class MockExamExercises {
     ExerciseModel(
       id: 'exam_ue1',
       question: 'Hardly _____ the house when it started pouring with rain.',
-      answers: ['I had left', 'had I left', 'I left', 'did I leave'],
-      correctAnswerIndex: 1,
+      answers: ['I had left', 'did I leave', 'I left', 'had I left'],
+      correctAnswerIndex: 3,
       explanation:
           '"Hardly" at the start triggers subject-auxiliary inversion with past perfect: "Hardly had I left."',
       difficulty: Difficulty.hard,
@@ -176,8 +176,8 @@ class MockExamExercises {
     ExerciseModel(
       id: 'exam_ue3',
       question: 'We _____ better leave now if we want to catch the last train.',
-      answers: ['would', 'should', 'had', 'could'],
-      correctAnswerIndex: 2,
+      answers: ['had', 'should', 'would', 'could'],
+      correctAnswerIndex: 0,
       explanation:
           '"Had better + infinitive" expresses strong advice or a warning. "We had better leave now."',
       difficulty: Difficulty.medium,
@@ -203,8 +203,8 @@ class MockExamExercises {
     ExerciseModel(
       id: 'exam_ue5',
       question: 'The new software is supposed to do away _____ the need for manual data entry.',
-      answers: ['from', 'with', 'for', 'of'],
-      correctAnswerIndex: 1,
+      answers: ['with', 'from', 'for', 'of'],
+      correctAnswerIndex: 0,
       explanation:
           '"Do away with" is a phrasal verb meaning to abolish or eliminate something.',
       difficulty: Difficulty.medium,
@@ -225,8 +225,8 @@ class MockExamExercises {
     ExerciseModel(
       id: 'exam_ue7',
       question: 'She has a tendency to put things _____ until the last minute.',
-      answers: ['on', 'away', 'off', 'up'],
-      correctAnswerIndex: 2,
+      answers: ['on', 'away', 'up', 'off'],
+      correctAnswerIndex: 3,
       explanation:
           '"Put off" means to postpone or delay. "Put things off until the last minute" = to procrastinate.',
       difficulty: Difficulty.easy,
@@ -315,11 +315,11 @@ class MockExamExercises {
       audioFile: 'assets/audio/exam_l1.mp3',
       answers: [
         'To celebrate the city\'s anniversary',
-        'To promote sustainable living through products and workshops',
-        'To raise money for a local charity',
         'To launch a new shopping centre',
+        'To raise money for a local charity',
+        'To promote sustainable living through products and workshops',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 3,
       explanation:
           'The report describes organisations showcasing "eco-friendly products" and "free workshops on composting, energy saving, and reducing food waste."',
       difficulty: Difficulty.easy,

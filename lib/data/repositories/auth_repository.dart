@@ -23,19 +23,6 @@ class AuthRepository {
     return _currentUser!;
   }
 
-  Future<UserModel> signInWithApple() async {
-    await Future.delayed(const Duration(milliseconds: 800));
-    _currentUser = UserModel(
-      userId: 'apple_${DateTime.now().millisecondsSinceEpoch}',
-      email: 'user@apple.com',
-      displayName: 'Apple User',
-      createdAt: DateTime.now(),
-      hasCompletedOnboarding: true,
-      hasAcceptedPrivacy: true,
-    );
-    return _currentUser!;
-  }
-
   Future<UserModel> signUp(String email, String password, String name) async {
     await Future.delayed(const Duration(milliseconds: 1000));
     _currentUser = UserModel(

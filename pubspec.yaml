@@ -19,6 +19,7 @@ dependencies:
   flutter_animate: ^4.5.2
   gap: ^3.0.1
   intl: ^0.19.0
+  http: ^1.2.2
   uuid: ^4.5.1
   percent_indicator: ^4.2.3
 
@@ -30,11 +31,7 @@ dependencies:
   firebase_remote_config: ^5.3.5
   firebase_storage: ^12.4.5
 
-  # Auth providers
-  google_sign_in: ^6.2.2
-  sign_in_with_apple: ^6.1.4
   flutter_tts: ^4.2.5
-  google_generative_ai: ^0.4.7
   audioplayers: ^6.6.0
 
 dev_dependencies:

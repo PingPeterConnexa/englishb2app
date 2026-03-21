@@ -4,6 +4,7 @@ import '../../../core/providers/theme_mode_provider.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../core/utils/constants.dart';
 import '../../../core/widgets/app_logo.dart';
 import '../../../core/widgets/premium_card.dart';
 
@@ -53,7 +54,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'B2 Exam Prep',
+                          AppConstants.appName,
                           style: AppTypography.title2.copyWith(
                             color: isDark
                                 ? AppColors.textPrimaryDark
@@ -62,7 +63,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Your B2 prep companion',
+                          AppConstants.appTagline,
                           style: AppTypography.caption1.copyWith(
                             color: isDark
                                 ? AppColors.textSecondaryDark

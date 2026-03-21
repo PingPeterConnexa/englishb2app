@@ -18,16 +18,82 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _isSignUp = false;
+  final _confirmPasswordController = TextEditingController();
   final _nameController = TextEditingController();
+  bool _isSignUp = false;
   bool _acceptedPrivacy = false;
+  String? _localError;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     _nameController.dispose();
     super.dispose();
+  }
+
+  String? _validateEmailPassword() {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+    if (email.isEmpty) {
+      return 'Please enter your email address.';
+    }
+    if (!email.contains('@') || !email.contains('.')) {
+      return 'Please enter a valid email address.';
+    }
+    if (password.isEmpty) {
+      return 'Please enter your password.';
+    }
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters.';
+    }
+    return null;
+  }
+
+  String? _validateSignUp() {
+    final base = _validateEmailPassword();
+    if (base != null) return base;
+
+    final confirm = _confirmPasswordController.text;
+    if (confirm != _passwordController.text) {
+      return 'Passwords do not match. Please check and try again.';
+    }
+    if (!_acceptedPrivacy) {
+      return 'Please accept the privacy policy to create an account.';
+    }
+    final name = _nameController.text.trim();
+    if (name.isEmpty) {
+      return 'Please enter your name.';
+    }
+    return null;
+  }
+
+  void _submit() {
+    setState(() => _localError = null);
+
+    if (_isSignUp) {
+      final err = _validateSignUp();
+      if (err != null) {
+        setState(() => _localError = err);
+        return;
+      }
+      ref.read(authProvider.notifier).signUp(
+            _emailController.text.trim(),
+            _passwordController.text,
+            _nameController.text.trim(),
+          );
+    } else {
+      final err = _validateEmailPassword();
+      if (err != null) {
+        setState(() => _localError = err);
+        return;
+      }
+      ref.read(authProvider.notifier).signInWithEmail(
+            _emailController.text.trim(),
+            _passwordController.text,
+          );
+    }
   }
 
   @override
@@ -40,6 +106,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         context.go('/home');
       }
     });
+
+    final displayError = _localError ?? authState.error;
 
     return Scaffold(
       body: SafeArea(
@@ -76,66 +144,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: AppSpacing.xl),
 
-              // Apple Sign-In button
-              SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton.icon(
-                  onPressed: () =>
-                      ref.read(authProvider.notifier).signInWithApple(),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        isDark ? Colors.white : Colors.black,
-                    foregroundColor:
-                        isDark ? Colors.black : Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(AppSpacing.radiusMd),
-                    ),
-                  ),
-                  icon: const Icon(Icons.apple, size: 24),
-                  label: Text(
-                    'Continue with Apple',
-                    style: AppTypography.headline.copyWith(
-                      color: isDark ? Colors.black : Colors.white,
-                    ),
+              if (_isSignUp) ...[
+                Text(
+                  'Name',
+                  style: AppTypography.footnote.copyWith(
+                    color: isDark
+                        ? AppColors.textSecondaryDark
+                        : AppColors.textSecondaryLight,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),
-
-              const SizedBox(height: AppSpacing.lg),
-              Row(
-                children: [
-                  Expanded(child: Divider(
-                    color: isDark ? AppColors.borderDark : AppColors.borderLight,
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.md),
-                    child: Text(
-                      'or',
-                      style: AppTypography.footnote.copyWith(
-                        color: isDark
-                            ? AppColors.textTertiaryDark
-                            : AppColors.textTertiaryLight,
-                      ),
-                    ),
-                  ),
-                  Expanded(child: Divider(
-                    color: isDark ? AppColors.borderDark : AppColors.borderLight,
-                  )),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.lg),
-
-              if (_isSignUp) ...[
-                Text('Name', style: AppTypography.footnote.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondaryDark
-                      : AppColors.textSecondaryLight,
-                  fontWeight: FontWeight.w600,
-                )),
                 const SizedBox(height: AppSpacing.sm),
                 TextField(
                   controller: _nameController,
@@ -143,16 +161,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     hintText: 'Your name',
                   ),
                   textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
                 ),
                 const SizedBox(height: AppSpacing.md),
               ],
 
-              Text('Email', style: AppTypography.footnote.copyWith(
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondaryLight,
-                fontWeight: FontWeight.w600,
-              )),
+              Text(
+                'Email',
+                style: AppTypography.footnote.copyWith(
+                  color: isDark
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               const SizedBox(height: AppSpacing.sm),
               TextField(
                 controller: _emailController,
@@ -160,16 +182,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   hintText: 'your@email.com',
                 ),
                 keyboardType: TextInputType.emailAddress,
+                autocorrect: false,
                 textInputAction: TextInputAction.next,
               ),
               const SizedBox(height: AppSpacing.md),
 
-              Text('Password', style: AppTypography.footnote.copyWith(
-                color: isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondaryLight,
-                fontWeight: FontWeight.w600,
-              )),
+              Text(
+                'Password',
+                style: AppTypography.footnote.copyWith(
+                  color: isDark
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               const SizedBox(height: AppSpacing.sm),
               TextField(
                 controller: _passwordController,
@@ -177,10 +203,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   hintText: 'Enter your password',
                 ),
                 obscureText: true,
-                textInputAction: TextInputAction.done,
+                textInputAction:
+                    _isSignUp ? TextInputAction.next : TextInputAction.done,
+                onSubmitted: (_) {
+                  if (!_isSignUp) _submit();
+                },
               ),
 
               if (_isSignUp) ...[
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  'Confirm password',
+                  style: AppTypography.footnote.copyWith(
+                    color: isDark
+                        ? AppColors.textSecondaryDark
+                        : AppColors.textSecondaryLight,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                TextField(
+                  controller: _confirmPasswordController,
+                  decoration: const InputDecoration(
+                    hintText: 'Re-enter your password',
+                  ),
+                  obscureText: true,
+                  textInputAction: TextInputAction.done,
+                  onSubmitted: (_) => _submit(),
+                ),
                 const SizedBox(height: AppSpacing.md),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,7 +265,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
               const SizedBox(height: AppSpacing.lg),
 
-              if (authState.error != null) ...[
+              if (displayError != null) ...[
                 Container(
                   padding: const EdgeInsets.all(AppSpacing.md),
                   decoration: BoxDecoration(
@@ -224,7 +274,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         BorderRadius.circular(AppSpacing.radiusMd),
                   ),
                   child: Text(
-                    authState.error!,
+                    displayError,
                     style: AppTypography.footnote
                         .copyWith(color: AppColors.error),
                   ),
@@ -235,27 +285,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               PrimaryButton(
                 label: _isSignUp ? 'Create Account' : 'Sign In',
                 isLoading: authState.status == AuthStatus.loading,
-                onPressed: () {
-                  if (_isSignUp) {
-                    if (!_acceptedPrivacy) return;
-                    ref.read(authProvider.notifier).signUp(
-                          _emailController.text,
-                          _passwordController.text,
-                          _nameController.text,
-                        );
-                  } else {
-                    ref.read(authProvider.notifier).signInWithEmail(
-                          _emailController.text,
-                          _passwordController.text,
-                        );
-                  }
-                },
+                onPressed: _submit,
               ),
 
               const SizedBox(height: AppSpacing.md),
               Center(
                 child: TextButton(
-                  onPressed: () => setState(() => _isSignUp = !_isSignUp),
+                  onPressed: () {
+                    setState(() {
+                      _isSignUp = !_isSignUp;
+                      _localError = null;
+                      _confirmPasswordController.clear();
+                      ref.read(authProvider.notifier).clearError();
+                    });
+                  },
                   child: Text(
                     _isSignUp
                         ? 'Already have an account? Sign In'

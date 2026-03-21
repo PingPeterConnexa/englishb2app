@@ -25,6 +25,8 @@ class _AudioPassageCardState extends State<AudioPassageCard> {
   bool _showTranscript = false;
   bool _isPlaying = false;
   int _playCount = 0;
+  Duration _position = Duration.zero;
+  Duration _duration = Duration.zero;
 
   bool get _isListening => widget.passage.startsWith('[Audio Transcript]');
   bool get _hasPlayed => _playCount > 0;
@@ -43,9 +45,16 @@ class _AudioPassageCardState extends State<AudioPassageCard> {
           _isPlaying = state == PlayerState.playing;
           if (state == PlayerState.completed) {
             _isPlaying = false;
+            _position = _duration;
           }
         });
       }
+    });
+    _player.onDurationChanged.listen((d) {
+      if (mounted) setState(() => _duration = d);
+    });
+    _player.onPositionChanged.listen((p) {
+      if (mounted) setState(() => _position = p);
     });
   }
 
@@ -53,6 +62,17 @@ class _AudioPassageCardState extends State<AudioPassageCard> {
   void dispose() {
     _player.dispose();
     super.dispose();
+  }
+
+  String _formatDuration(Duration d) {
+    final minutes = d.inMinutes.remainder(60).toString().padLeft(2, '0');
+    final seconds = d.inSeconds.remainder(60).toString().padLeft(2, '0');
+    return '$minutes:$seconds';
+  }
+
+  double get _progress {
+    if (_duration.inMilliseconds == 0) return 0;
+    return (_position.inMilliseconds / _duration.inMilliseconds).clamp(0.0, 1.0);
   }
 
   Future<void> _onPlayTap() async {
@@ -178,16 +198,40 @@ class _AudioPassageCardState extends State<AudioPassageCard> {
             ],
           ),
 
-          if (hasAudio && _isPlaying) ...[
+          if (hasAudio && (_isPlaying || _hasPlayed)) ...[
             const SizedBox(height: AppSpacing.md),
             ClipRRect(
               borderRadius: BorderRadius.circular(AppSpacing.radiusFull),
               child: LinearProgressIndicator(
+                value: _progress,
                 backgroundColor: AppColors.listening.withValues(alpha: 0.12),
                 valueColor:
                     AlwaysStoppedAnimation<Color>(AppColors.listening),
                 minHeight: 4,
               ),
+            ),
+            const SizedBox(height: AppSpacing.xs),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  _formatDuration(_position),
+                  style: AppTypography.caption2.copyWith(
+                    color: AppColors.listening,
+                    fontWeight: FontWeight.w600,
+                    fontFeatures: const [FontFeature.tabularFigures()],
+                  ),
+                ),
+                Text(
+                  _formatDuration(_duration),
+                  style: AppTypography.caption2.copyWith(
+                    color: isDark
+                        ? AppColors.textTertiaryDark
+                        : AppColors.textTertiaryLight,
+                    fontFeatures: const [FontFeature.tabularFigures()],
+                  ),
+                ),
+              ],
             ),
           ],
 

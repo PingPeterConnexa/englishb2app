@@ -8,8 +8,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_01',
       question: 'By the time we arrived, they _____ the entire house.',
-      answers: ['painted', 'had painted', 'have painted', 'were painting'],
-      correctAnswerIndex: 1,
+      answers: ['painted', 'were painting', 'have painted', 'had painted'],
+      correctAnswerIndex: 3,
       explanation:
           'Past perfect "had painted" is needed because the painting was completed before the arrival (an earlier past event).',
       difficulty: Difficulty.medium,
@@ -55,8 +55,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_04',
       question: 'She accused him _____ lying about his qualifications.',
-      answers: ['for', 'of', 'to', 'about'],
-      correctAnswerIndex: 1,
+      answers: ['of', 'for', 'to', 'about'],
+      correctAnswerIndex: 0,
       explanation:
           '"Accuse someone of + gerund" is the correct collocation. "She accused him of lying."',
       difficulty: Difficulty.medium,
@@ -87,11 +87,11 @@ class DailyExercises {
           'petrol cars, but not as clean as many consumers assume.',
       answers: [
         'Electric vehicles have no environmental impact',
-        'Electric vehicles are better but not perfect for the environment',
-        'Nobody is buying electric vehicles',
         'Governments oppose electric vehicles',
+        'Nobody is buying electric vehicles',
+        'Electric vehicles are better but not perfect for the environment',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 3,
       explanation:
           'The passage states EVs are "greener than petrol cars, but not as clean as many consumers assume."',
       difficulty: Difficulty.medium,
@@ -102,8 +102,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_07',
       question: 'I\'d rather you _____ anyone about this until the announcement.',
-      answers: ['don\'t tell', 'didn\'t tell', 'won\'t tell', 'haven\'t told'],
-      correctAnswerIndex: 1,
+      answers: ['didn\'t tell', 'don\'t tell', 'won\'t tell', 'haven\'t told'],
+      correctAnswerIndex: 0,
       explanation:
           'After "I\'d rather + someone," the past simple is used to express a preference about another person\'s actions.',
       difficulty: Difficulty.hard,
@@ -123,11 +123,11 @@ class DailyExercises {
           'still use their phones in bed.',
       answers: [
         'Technology has no effect on sleep quality',
-        'Blue light from screens can disrupt sleep by suppressing melatonin',
         'Only children are affected by screen use before bed',
+        'Blue light from screens can disrupt sleep by suppressing melatonin',
         'Night mode completely eliminates the problem',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 2,
       explanation:
           'The passage explains that blue light "suppresses the production of melatonin" and can "delay sleep onset."',
       difficulty: Difficulty.medium,
@@ -173,8 +173,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_11',
       question: 'He admitted _____ the window, but said it was an accident.',
-      answers: ['to break', 'breaking', 'to breaking', 'break'],
-      correctAnswerIndex: 1,
+      answers: ['to break', 'to breaking', 'breaking', 'break'],
+      correctAnswerIndex: 2,
       explanation:
           '"Admit" is followed by a gerund (-ing form). "He admitted breaking" is the correct pattern.',
       difficulty: Difficulty.medium,
@@ -185,8 +185,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_12',
       question: 'Were it not _____ the scholarship, she could never have afforded university.',
-      answers: ['about', 'for', 'with', 'from'],
-      correctAnswerIndex: 1,
+      answers: ['about', 'from', 'with', 'for'],
+      correctAnswerIndex: 3,
       explanation:
           '"Were it not for" is a formal inverted conditional meaning "if it had not been for."',
       difficulty: Difficulty.hard,
@@ -237,8 +237,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_15',
       question: 'The children were made _____ their homework before watching TV.',
-      answers: ['do', 'to do', 'doing', 'done'],
-      correctAnswerIndex: 1,
+      answers: ['do', 'done', 'doing', 'to do'],
+      correctAnswerIndex: 3,
       explanation:
           'In passive form, "make" requires "to + infinitive": "were made to do." Active form uses bare infinitive.',
       difficulty: Difficulty.medium,
@@ -273,8 +273,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_17',
       question: 'We\'re not used to _____ such cold weather in this part of the country.',
-      answers: ['have', 'having', 'had', 'has'],
-      correctAnswerIndex: 1,
+      answers: ['have', 'has', 'had', 'having'],
+      correctAnswerIndex: 3,
       explanation:
           '"Be used to" is followed by a gerund (-ing form). "Not used to having" is the correct form.',
       difficulty: Difficulty.easy,
@@ -293,11 +293,11 @@ class DailyExercises {
           'essential service rather than a relic of the past.',
       answers: [
         'They sell books more cheaply than online shops',
-        'They serve as vital community resources beyond lending books',
         'People prefer reading physical books',
+        'They serve as vital community resources beyond lending books',
         'The internet is unreliable in most areas',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 2,
       explanation:
           'The passage describes libraries as "community hubs" offering internet, workshops, and events beyond just books.',
       difficulty: Difficulty.medium,
@@ -366,8 +366,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_23',
       question: 'The film was _____ boring that half the audience left before the end.',
-      answers: ['such', 'so', 'too', 'very'],
-      correctAnswerIndex: 1,
+      answers: ['such', 'very', 'too', 'so'],
+      correctAnswerIndex: 3,
       explanation:
           '"So + adjective + that" expresses result. "So boring that half the audience left."',
       difficulty: Difficulty.easy,
@@ -402,8 +402,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_25',
       question: 'He denied _____ involved in the incident.',
-      answers: ['to be', 'being', 'be', 'was'],
-      correctAnswerIndex: 1,
+      answers: ['being', 'to be', 'be', 'was'],
+      correctAnswerIndex: 0,
       explanation:
           '"Deny" is followed by a gerund (-ing form). "Denied being involved" is the correct pattern.',
       difficulty: Difficulty.medium,
@@ -506,8 +506,8 @@ class DailyExercises {
     ExerciseModel(
       id: 'daily_31',
       question: 'Only after reading the contract carefully _____ the hidden clause.',
-      answers: ['she noticed', 'did she notice', 'she did notice', 'noticed she'],
-      correctAnswerIndex: 1,
+      answers: ['she noticed', 'noticed she', 'she did notice', 'did she notice'],
+      correctAnswerIndex: 3,
       explanation:
           '"Only after" at the start triggers subject-auxiliary inversion in the main clause: "did she notice."',
       difficulty: Difficulty.hard,
