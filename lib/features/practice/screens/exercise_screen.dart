@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/services/tts_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
@@ -64,7 +63,6 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
           onPressed: () {
-            ref.read(ttsProvider.notifier).stop();
             ref.read(exerciseSessionProvider.notifier).reset();
             ref.invalidate(progressProvider);
             Navigator.of(context).pop();
@@ -100,7 +98,10 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
                   const SizedBox(height: AppSpacing.md),
 
                   if (exercise.passage != null) ...[
-                    AudioPassageCard(passage: exercise.passage!),
+                    AudioPassageCard(
+                      passage: exercise.passage!,
+                      audioFile: exercise.audioFile,
+                    ),
                     const SizedBox(height: AppSpacing.lg),
                   ],
 
@@ -301,7 +302,6 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
           onPressed: () {
-            ref.read(ttsProvider.notifier).stop();
             ref.read(exerciseSessionProvider.notifier).reset();
             ref.invalidate(progressProvider);
             Navigator.of(context).pop();
@@ -323,7 +323,6 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
             PrimaryButton(
               label: 'Done',
               onPressed: () {
-                ref.read(ttsProvider.notifier).stop();
                 ref.read(exerciseSessionProvider.notifier).reset();
                 ref.invalidate(progressProvider);
                 Navigator.of(context).pop();

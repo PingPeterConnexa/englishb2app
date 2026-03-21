@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/services/tts_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
@@ -62,10 +61,7 @@ class _DailyTaskScreenState extends ConsumerState<DailyTaskScreen> {
         ),
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
-          onPressed: () {
-            ref.read(ttsProvider.notifier).stop();
-            context.pop();
-          },
+          onPressed: () => context.pop(),
         ),
       ),
       body: Column(
@@ -79,7 +75,10 @@ class _DailyTaskScreenState extends ConsumerState<DailyTaskScreen> {
                   const SizedBox(height: AppSpacing.lg),
 
                   if (exercise.passage != null) ...[
-                    AudioPassageCard(passage: exercise.passage!),
+                    AudioPassageCard(
+                      passage: exercise.passage!,
+                      audioFile: exercise.audioFile,
+                    ),
                     const SizedBox(height: AppSpacing.lg),
                   ],
 

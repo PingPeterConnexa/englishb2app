@@ -22,6 +22,7 @@ class ExerciseModel {
   final String id;
   final String question;
   final String? passage;
+  final String? audioFile;
   final List<String> answers;
   final int correctAnswerIndex;
   final String explanation;
@@ -34,6 +35,7 @@ class ExerciseModel {
     required this.id,
     required this.question,
     this.passage,
+    this.audioFile,
     required this.answers,
     required this.correctAnswerIndex,
     required this.explanation,

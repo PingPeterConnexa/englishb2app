@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/services/tts_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
@@ -117,7 +116,11 @@ class ExamSessionScreen extends ConsumerWidget {
                     const SizedBox(height: AppSpacing.lg),
 
                     if (exercise.passage != null) ...[
-                      AudioPassageCard(passage: exercise.passage!),
+                      AudioPassageCard(
+                        passage: exercise.passage!,
+                        audioFile: exercise.audioFile,
+                        examMode: true,
+                      ),
                       const SizedBox(height: AppSpacing.lg),
                     ],
 
@@ -302,7 +305,6 @@ class ExamSessionScreen extends ConsumerWidget {
                             ? 'Next Question'
                             : 'Finish Exam',
                     onPressed: () {
-                        ref.read(ttsProvider.notifier).stop();
                         ref.read(mockExamProvider.notifier).nextQuestion();
                     },
                   ),
@@ -351,7 +353,6 @@ class ExamSessionScreen extends ConsumerWidget {
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
-              ref.read(ttsProvider.notifier).stop();
               ref.read(mockExamProvider.notifier).reset();
               context.go('/mock-exam');
             },

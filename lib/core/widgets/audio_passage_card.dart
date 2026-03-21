@@ -1,32 +1,89 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/tts_service.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_typography.dart';
 
-class AudioPassageCard extends ConsumerStatefulWidget {
+class AudioPassageCard extends StatefulWidget {
   final String passage;
+  final String? audioFile;
+  final bool examMode;
 
-  const AudioPassageCard({super.key, required this.passage});
+  const AudioPassageCard({
+    super.key,
+    required this.passage,
+    this.audioFile,
+    this.examMode = false,
+  });
 
   @override
-  ConsumerState<AudioPassageCard> createState() => _AudioPassageCardState();
+  State<AudioPassageCard> createState() => _AudioPassageCardState();
 }
 
-class _AudioPassageCardState extends ConsumerState<AudioPassageCard> {
+class _AudioPassageCardState extends State<AudioPassageCard> {
+  final AudioPlayer _player = AudioPlayer();
   bool _showTranscript = false;
-  bool _hasPlayed = false;
+  bool _isPlaying = false;
+  int _playCount = 0;
 
   bool get _isListening => widget.passage.startsWith('[Audio Transcript]');
+  bool get _hasPlayed => _playCount > 0;
+  int get _maxPlays => widget.examMode ? 2 : 999;
+  bool get _canPlayAgain => _playCount < _maxPlays;
 
   String get _cleanText =>
       widget.passage.replaceFirst('[Audio Transcript]\n', '').trim();
 
   @override
+  void initState() {
+    super.initState();
+    _player.onPlayerStateChanged.listen((state) {
+      if (mounted) {
+        setState(() {
+          _isPlaying = state == PlayerState.playing;
+          if (state == PlayerState.completed) {
+            _isPlaying = false;
+          }
+        });
+      }
+    });
+  }
+
+  @override
   void dispose() {
-    ref.read(ttsProvider.notifier).stop();
+    _player.dispose();
     super.dispose();
+  }
+
+  Future<void> _onPlayTap() async {
+    if (widget.examMode) {
+      await _examPlayback();
+    } else {
+      await _practicePlayback();
+    }
+  }
+
+  Future<void> _practicePlayback() async {
+    if (_isPlaying) {
+      await _player.pause();
+    } else {
+      if (_playCount == 0 || _player.state == PlayerState.completed) {
+        await _player.play(AssetSource(
+          widget.audioFile!.replaceFirst('assets/', ''),
+        ));
+        setState(() => _playCount++);
+      } else {
+        await _player.resume();
+      }
+    }
+  }
+
+  Future<void> _examPlayback() async {
+    if (_isPlaying || !_canPlayAgain) return;
+    await _player.play(AssetSource(
+      widget.audioFile!.replaceFirst('assets/', ''),
+    ));
+    setState(() => _playCount++);
   }
 
   @override
@@ -59,8 +116,7 @@ class _AudioPassageCardState extends ConsumerState<AudioPassageCard> {
 
   Widget _buildListeningCard(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final ttsState = ref.watch(ttsProvider);
-    final isPlaying = ttsState == TtsState.playing;
+    final hasAudio = widget.audioFile != null && widget.audioFile!.isNotEmpty;
 
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -89,24 +145,40 @@ class _AudioPassageCardState extends ConsumerState<AudioPassageCard> {
                   color: AppColors.listening,
                 ),
               ),
+              if (widget.examMode && hasAudio) ...[
+                const SizedBox(width: AppSpacing.sm),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: _canPlayAgain
+                        ? AppColors.listening.withValues(alpha: 0.12)
+                        : AppColors.error.withValues(alpha: 0.12),
+                    borderRadius:
+                        BorderRadius.circular(AppSpacing.radiusFull),
+                  ),
+                  child: Text(
+                    '${_maxPlays - _playCount} plays left',
+                    style: AppTypography.caption2.copyWith(
+                      color: _canPlayAgain
+                          ? AppColors.listening
+                          : AppColors.error,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
               const Spacer(),
-              _PlayButton(
-                isPlaying: isPlaying,
-                onTap: () async {
-                  if (isPlaying) {
-                    await ref.read(ttsProvider.notifier).stop();
-                  } else {
-                    await ref.read(ttsProvider.notifier).speak(_cleanText);
-                    if (!_hasPlayed) {
-                      setState(() => _hasPlayed = true);
-                    }
-                  }
-                },
-              ),
+              if (hasAudio && (_canPlayAgain || _isPlaying))
+                _PlayButton(
+                  isPlaying: _isPlaying,
+                  showPause: !widget.examMode,
+                  onTap: _onPlayTap,
+                ),
             ],
           ),
 
-          if (isPlaying) ...[
+          if (hasAudio && _isPlaying) ...[
             const SizedBox(height: AppSpacing.md),
             ClipRRect(
               borderRadius: BorderRadius.circular(AppSpacing.radiusFull),
@@ -119,10 +191,12 @@ class _AudioPassageCardState extends ConsumerState<AudioPassageCard> {
             ),
           ],
 
-          if (!isPlaying && !_hasPlayed) ...[
+          if (hasAudio && !_isPlaying && !_hasPlayed) ...[
             const SizedBox(height: AppSpacing.md),
             Text(
-              'Tap play to listen',
+              widget.examMode
+                  ? 'Tap play to listen (max 2 times)'
+                  : 'Tap play to listen',
               style: AppTypography.caption1.copyWith(
                 color: isDark
                     ? AppColors.textTertiaryDark
@@ -131,7 +205,37 @@ class _AudioPassageCardState extends ConsumerState<AudioPassageCard> {
             ),
           ],
 
-          if (_hasPlayed && !isPlaying) ...[
+          if (hasAudio && !_canPlayAgain && !_isPlaying) ...[
+            const SizedBox(height: AppSpacing.md),
+            Row(
+              children: [
+                Icon(Icons.block_rounded,
+                    color: AppColors.error.withValues(alpha: 0.6), size: 16),
+                const SizedBox(width: AppSpacing.xs),
+                Text(
+                  'No plays remaining',
+                  style: AppTypography.caption1.copyWith(
+                    color: AppColors.error.withValues(alpha: 0.8),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ],
+
+          if (!hasAudio) ...[
+            const SizedBox(height: AppSpacing.md),
+            Text(
+              'Audio file not available',
+              style: AppTypography.caption1.copyWith(
+                color: isDark
+                    ? AppColors.textTertiaryDark
+                    : AppColors.textTertiaryLight,
+              ),
+            ),
+          ],
+
+          if (!widget.examMode) ...[
             const SizedBox(height: AppSpacing.sm),
             GestureDetector(
               onTap: () => setState(() => _showTranscript = !_showTranscript),
@@ -177,14 +281,20 @@ class _AudioPassageCardState extends ConsumerState<AudioPassageCard> {
 
 class _PlayButton extends StatelessWidget {
   final bool isPlaying;
+  final bool showPause;
   final VoidCallback onTap;
 
-  const _PlayButton({required this.isPlaying, required this.onTap});
+  const _PlayButton({
+    required this.isPlaying,
+    this.showPause = true,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final showAsPlaying = isPlaying && showPause;
     return GestureDetector(
-      onTap: onTap,
+      onTap: (isPlaying && !showPause) ? null : onTap,
       child: AnimatedContainer(
         duration: AppSpacing.animFast,
         width: 40,
@@ -196,7 +306,7 @@ class _PlayButton extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Icon(
-          isPlaying ? Icons.stop_rounded : Icons.play_arrow_rounded,
+          showAsPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
           color: isPlaying ? Colors.white : AppColors.listening,
           size: 22,
         ),

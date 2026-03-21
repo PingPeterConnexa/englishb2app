@@ -542,21 +542,23 @@ class SampleExercises {
     ExerciseModel(
       id: 'l1',
       question:
-          'You hear two colleagues discussing a meeting. What does the woman suggest?',
+          'You hear a manager leaving a voicemail for her team. What does she want them to do?',
       passage:
-          '[Audio Transcript]\nWoman: I think we should postpone the meeting until Thursday. '
-          'Half the team is still working on the quarterly report and won\'t have their figures ready.\n'
-          'Man: That\'s a fair point. Should we notify everyone by email?\n'
-          'Woman: Yes, and let\'s book the larger conference room while we\'re at it.',
+          '[Audio Transcript]\nHi everyone, it\'s Sarah. I\'m calling to let you know that '
+          'Wednesday\'s meeting has been moved to Thursday at two o\'clock. Half the team is still '
+          'working on the quarterly report and won\'t have the figures ready in time. Please make '
+          'sure you\'ve updated your sections by Thursday morning so we can go through everything '
+          'together. Also, we\'ll be using the larger conference room on the third floor. Thanks.',
+      audioFile: 'assets/audio/l1.mp3',
       answers: [
-        'Cancelling the meeting entirely',
-        'Postponing the meeting to Thursday',
-        'Having the meeting without the report',
-        'Asking the team to work faster',
+        'Cancel the project entirely',
+        'Prepare their report sections for a rescheduled meeting',
+        'Work overtime on Wednesday',
+        'Send their figures by email instead',
       ],
       correctAnswerIndex: 1,
       explanation:
-          'The woman explicitly says "I think we should postpone the meeting until Thursday."',
+          'Sarah asks the team to update their sections by Thursday morning for the rescheduled meeting.',
       difficulty: Difficulty.easy,
       type: ExerciseType.listeningComprehension,
       category: ExerciseCategory.listening,
@@ -564,21 +566,23 @@ class SampleExercises {
     ExerciseModel(
       id: 'l2',
       question:
-          'You hear a radio interview about a new museum exhibition. What surprised the curator most?',
+          'You hear a museum curator talking about a new exhibition. What surprised her most?',
       passage:
-          '[Audio Transcript]\nInterviewer: So what has surprised you most about the public response?\n'
-          'Curator: Honestly, the age range of our visitors. We expected mainly art students and historians, '
-          'but we\'ve had entire families coming through—grandparents with young children. The interactive '
-          'displays seem to bridge generational gaps in a way we hadn\'t anticipated.',
+          '[Audio Transcript]\nWhen we opened the exhibition last month, we expected it to appeal '
+          'mainly to art students and historians. But what has genuinely surprised me is the age range '
+          'of our visitors. We\'ve had entire families coming through — grandparents with young children, '
+          'teenagers taking photos for social media. The interactive displays seem to bridge generational '
+          'gaps in a way we hadn\'t anticipated at all. It\'s been incredibly rewarding to see.',
+      audioFile: 'assets/audio/l2.mp3',
       answers: [
         'The number of international visitors',
-        'The diversity of age groups visiting',
+        'The wide range of age groups visiting the exhibition',
         'The negative reviews from critics',
         'The low attendance during weekdays',
       ],
       correctAnswerIndex: 1,
       explanation:
-          'The curator says "the age range of our visitors" surprised them most, noting families spanning generations.',
+          'The curator says "what has genuinely surprised me is the age range of our visitors," noting families spanning generations.',
       difficulty: Difficulty.medium,
       type: ExerciseType.listeningComprehension,
       category: ExerciseCategory.listening,
@@ -589,10 +593,11 @@ class SampleExercises {
           'You hear a student leaving a voicemail for her tutor. Why is she calling?',
       passage:
           '[Audio Transcript]\nHi Professor Clarke, this is Emma from your Wednesday seminar group. '
-          'I\'m calling because I\'ve had a look at the essay guidelines and I\'m confused about the '
-          'referencing format. The handbook says APA but the assignment sheet mentions Harvard style. '
-          'Could you let me know which one we should follow? I want to make sure I get it right before '
-          'the deadline next Friday. Thanks!',
+          'I\'m calling because I\'ve had a look at the essay guidelines and I\'m a bit confused about '
+          'the referencing format. The handbook says we should use APA, but the assignment sheet mentions '
+          'Harvard style. Could you let me know which one we should follow? I want to make sure I get '
+          'it right before the deadline next Friday. Thanks very much.',
+      audioFile: 'assets/audio/l3.mp3',
       answers: [
         'To request an extension on her essay',
         'To clarify which referencing format to use',

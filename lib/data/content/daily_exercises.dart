@@ -54,24 +54,14 @@ class DailyExercises {
     // Day 4
     ExerciseModel(
       id: 'daily_04',
-      question: 'You hear a conversation at a train station. What problem does the woman have?',
-      passage:
-          '[Audio Transcript]\nWoman: Excuse me, I bought a return ticket online, but the app only '
-          'shows a single journey. I definitely paid for both.\n'
-          'Man: Let me check. Yes, I can see the return was charged. It looks like a display error. '
-          'I\'ll print a confirmation for you.\nWoman: That\'s a relief, thank you.',
-      answers: [
-        'She lost her ticket',
-        'Her return ticket is not showing in the app',
-        'She missed her train',
-        'She was charged twice',
-      ],
+      question: 'She accused him _____ lying about his qualifications.',
+      answers: ['for', 'of', 'to', 'about'],
       correctAnswerIndex: 1,
       explanation:
-          'The woman says "the app only shows a single journey" even though she paid for a return ticket.',
-      difficulty: Difficulty.easy,
-      type: ExerciseType.listeningComprehension,
-      category: ExerciseCategory.listening,
+          '"Accuse someone of + gerund" is the correct collocation. "She accused him of lying."',
+      difficulty: Difficulty.medium,
+      type: ExerciseType.gapFill,
+      category: ExerciseCategory.useOfEnglish,
     ),
     // Day 5
     ExerciseModel(
@@ -123,24 +113,26 @@ class DailyExercises {
     // Day 8
     ExerciseModel(
       id: 'daily_08',
-      question: 'You hear a podcast about sleep. What does the expert recommend?',
+      question: 'What does the passage suggest about sleep and technology?',
       passage:
-          '[Audio Transcript]\nHost: So what\'s your top tip for better sleep?\n'
-          'Expert: Consistency. Go to bed and wake up at the same time every day, even on weekends. '
-          'Your body clock needs regularity. Screen time before bed is harmful, but the single most '
-          'impactful change is a fixed schedule.',
+          'A growing body of research suggests that the blue light emitted by smartphones and tablets '
+          'suppresses the production of melatonin, the hormone responsible for regulating sleep. Even '
+          'brief exposure within an hour of bedtime can delay sleep onset by up to thirty minutes. '
+          'Sleep experts recommend switching to "night mode" on devices or, ideally, avoiding screens '
+          'entirely in the hour before bed. Despite this advice, surveys show that over 70% of adults '
+          'still use their phones in bed.',
       answers: [
-        'Avoiding all screens permanently',
-        'Sleeping at least ten hours a night',
-        'Maintaining a consistent sleep schedule',
-        'Taking sleeping pills regularly',
+        'Technology has no effect on sleep quality',
+        'Blue light from screens can disrupt sleep by suppressing melatonin',
+        'Only children are affected by screen use before bed',
+        'Night mode completely eliminates the problem',
       ],
-      correctAnswerIndex: 2,
+      correctAnswerIndex: 1,
       explanation:
-          'The expert says "the single most impactful change is a fixed schedule" and emphasises consistency.',
-      difficulty: Difficulty.easy,
-      type: ExerciseType.listeningComprehension,
-      category: ExerciseCategory.listening,
+          'The passage explains that blue light "suppresses the production of melatonin" and can "delay sleep onset."',
+      difficulty: Difficulty.medium,
+      type: ExerciseType.readingComprehension,
+      category: ExerciseCategory.reading,
     ),
     // Day 9
     ExerciseModel(
@@ -192,24 +184,14 @@ class DailyExercises {
     // Day 12
     ExerciseModel(
       id: 'daily_12',
-      question: 'You overhear two friends. Why is Tom upset?',
-      passage:
-          '[Audio Transcript]\nAnna: What\'s wrong with Tom today?\n'
-          'Ben: He applied for that promotion he\'s been wanting for months, and they gave it to '
-          'someone who\'s only been with the company for six months.\n'
-          'Anna: Oh no. I can understand why he\'d feel overlooked.',
-      answers: [
-        'He was fired from his job',
-        'He didn\'t get the promotion he wanted',
-        'He has too much work to do',
-        'He doesn\'t like his new colleague',
-      ],
+      question: 'Were it not _____ the scholarship, she could never have afforded university.',
+      answers: ['about', 'for', 'with', 'from'],
       correctAnswerIndex: 1,
       explanation:
-          'Ben explains Tom applied for a promotion but "they gave it to someone" else.',
-      difficulty: Difficulty.easy,
-      type: ExerciseType.listeningComprehension,
-      category: ExerciseCategory.listening,
+          '"Were it not for" is a formal inverted conditional meaning "if it had not been for."',
+      difficulty: Difficulty.hard,
+      type: ExerciseType.gapFill,
+      category: ExerciseCategory.useOfEnglish,
     ),
     // Day 13
     ExerciseModel(
@@ -266,23 +248,26 @@ class DailyExercises {
     // Day 16
     ExerciseModel(
       id: 'daily_16',
-      question: 'You hear a tour guide. What is special about the building?',
+      question: 'What does the passage imply about the future of printed newspapers?',
       passage:
-          '[Audio Transcript]\nGuide: This library was designed by a local architect in 1897 and is one '
-          'of the few buildings in the city that survived the great fire of 1923. Notice the original '
-          'stained-glass windows—they\'re over 125 years old and have never been replaced.',
+          'Printed newspaper circulation has fallen by over 50% in the last decade, and advertising '
+          'revenue has shifted overwhelmingly to digital platforms. Many iconic publications have ceased '
+          'their print editions entirely, moving to online-only models. However, a small but loyal '
+          'readership continues to value the tactile experience of holding a newspaper. Some analysts '
+          'predict that print will survive as a premium niche product, much like vinyl records did in '
+          'the age of streaming.',
       answers: [
-        'It was built after the great fire',
-        'It survived a major fire and retains original features',
-        'It was recently renovated',
-        'It is the newest building in the city',
+        'Printed newspapers have already completely disappeared',
+        'Print may survive as a niche product for dedicated readers',
+        'Advertising revenue for print is increasing',
+        'Everyone prefers reading news on paper',
       ],
       correctAnswerIndex: 1,
       explanation:
-          'The guide says it "survived the great fire of 1923" and still has the original stained-glass windows.',
-      difficulty: Difficulty.easy,
-      type: ExerciseType.listeningComprehension,
-      category: ExerciseCategory.listening,
+          'The passage suggests "print will survive as a premium niche product" similar to vinyl records.',
+      difficulty: Difficulty.medium,
+      type: ExerciseType.readingComprehension,
+      category: ExerciseCategory.reading,
     ),
     // Day 17
     ExerciseModel(
@@ -334,24 +319,14 @@ class DailyExercises {
     // Day 20
     ExerciseModel(
       id: 'daily_20',
-      question: 'You hear a weather report. What should listeners prepare for?',
-      passage:
-          '[Audio Transcript]\nForecaster: A major storm system is moving in from the west and is '
-          'expected to hit the region by Thursday evening. We\'re looking at heavy rainfall, strong '
-          'winds of up to 80 kilometres per hour, and possible flooding in low-lying areas. Residents '
-          'are advised to secure outdoor furniture and avoid unnecessary travel.',
-      answers: [
-        'A heat wave lasting several days',
-        'Light rain and mild temperatures',
-        'A severe storm with heavy rain and strong winds',
-        'Snow and freezing temperatures',
-      ],
-      correctAnswerIndex: 2,
+      question: 'He would rather _____ the bus than drive in rush-hour traffic.',
+      answers: ['take', 'to take', 'taking', 'took'],
+      correctAnswerIndex: 0,
       explanation:
-          'The report warns of "heavy rainfall, strong winds of up to 80 km/h, and possible flooding."',
+          '"Would rather + bare infinitive" is used to express a preference. "He would rather take the bus."',
       difficulty: Difficulty.easy,
-      type: ExerciseType.listeningComprehension,
-      category: ExerciseCategory.listening,
+      type: ExerciseType.gapFill,
+      category: ExerciseCategory.useOfEnglish,
     ),
     // Day 21
     ExerciseModel(
@@ -402,24 +377,26 @@ class DailyExercises {
     // Day 24
     ExerciseModel(
       id: 'daily_24',
-      question: 'You hear a student talking to a librarian. What does the student need?',
+      question: 'What is the main argument of this passage about working from home?',
       passage:
-          '[Audio Transcript]\nStudent: Hi, I\'m working on my dissertation and I need access to the '
-          'journal archives from before 2005. The online database only goes back to 2010.\n'
-          'Librarian: Those older issues are stored in the basement. I can get you a visitor pass for '
-          'the archive room.\nStudent: That would be perfect, thank you.',
+          'While remote work offers undeniable flexibility, a growing number of companies are calling '
+          'employees back to the office. Executives argue that spontaneous face-to-face interactions '
+          'drive innovation in ways that virtual meetings simply cannot replicate. However, employee '
+          'surveys consistently show that most workers prefer a hybrid model — splitting their week '
+          'between home and office. The challenge for organisations is finding a balance that satisfies '
+          'both productivity goals and employee well-being.',
       answers: [
-        'A new library card',
-        'Access to older journal archives',
-        'Help with writing her dissertation',
-        'A computer to browse the internet',
+        'Remote work should be permanently abolished',
+        'Everyone prefers working from home full-time',
+        'Finding a balance between remote and office work is the key challenge',
+        'Virtual meetings are superior to face-to-face interactions',
       ],
-      correctAnswerIndex: 1,
+      correctAnswerIndex: 2,
       explanation:
-          'The student needs "journal archives from before 2005" that are not available online.',
-      difficulty: Difficulty.easy,
-      type: ExerciseType.listeningComprehension,
-      category: ExerciseCategory.listening,
+          'The passage concludes that "finding a balance that satisfies both productivity goals and employee well-being" is the challenge.',
+      difficulty: Difficulty.medium,
+      type: ExerciseType.readingComprehension,
+      category: ExerciseCategory.reading,
     ),
     // Day 25
     ExerciseModel(
@@ -471,24 +448,19 @@ class DailyExercises {
     // Day 28
     ExerciseModel(
       id: 'daily_28',
-      question: 'You hear a manager speaking to new employees. What is the key company rule?',
-      passage:
-          '[Audio Transcript]\nManager: Welcome aboard, everyone. There are a few things to cover, but '
-          'the most important rule here is transparency. If you make a mistake, own it immediately. '
-          'We\'d much rather fix a small problem early than discover a big one later. No one will be '
-          'punished for honest errors—only for hiding them.',
+      question: 'Rewrite: "The last time I went abroad was in 2019."\nI _____ abroad since 2019.',
       answers: [
-        'Never make mistakes',
-        'Always report mistakes immediately and honestly',
-        'Work overtime every Friday',
-        'Avoid speaking to senior management',
+        'didn\'t go',
+        'haven\'t been',
+        'wasn\'t going',
+        'don\'t go',
       ],
       correctAnswerIndex: 1,
       explanation:
-          'The manager says "If you make a mistake, own it immediately" and "No one will be punished for honest errors."',
+          '"Haven\'t been ... since" is the present perfect structure for duration from a past point to now.',
       difficulty: Difficulty.medium,
-      type: ExerciseType.listeningComprehension,
-      category: ExerciseCategory.listening,
+      type: ExerciseType.sentenceTransformation,
+      category: ExerciseCategory.useOfEnglish,
     ),
     // Day 29
     ExerciseModel(

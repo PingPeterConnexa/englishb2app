@@ -304,13 +304,15 @@ class MockExamExercises {
     ExerciseModel(
       id: 'exam_l1',
       question:
-          'You hear a news report about a local event. What is the main purpose of the event?',
+          'You hear a news presenter reporting on a local event. What is the main purpose of the event?',
       passage:
-          '[Audio Transcript]\nPresenter: This weekend, the city of Brighton will host its annual '
-          'Sustainability Fair at the seafront pavilion. Over fifty local organisations will showcase '
-          'eco-friendly products, from reusable household goods to organic food. There will also be '
-          'free workshops on composting, energy saving, and reducing food waste. The event, now in '
-          'its eighth year, is expected to attract over ten thousand visitors.',
+          '[Audio Transcript]\nThis weekend, the city of Brighton will host its annual Sustainability '
+          'Fair at the seafront pavilion. Over fifty local organisations will be showcasing eco-friendly '
+          'products, from reusable household goods to organic food. There will also be free workshops on '
+          'composting, energy saving, and reducing food waste. The event, now in its eighth year, is '
+          'expected to attract over ten thousand visitors. Doors open at nine a.m. on Saturday and entry '
+          'is completely free.',
+      audioFile: 'assets/audio/exam_l1.mp3',
       answers: [
         'To celebrate the city\'s anniversary',
         'To promote sustainable living through products and workshops',
@@ -327,14 +329,15 @@ class MockExamExercises {
     ExerciseModel(
       id: 'exam_l2',
       question:
-          'You hear two friends discussing a documentary. What did the man find most impressive?',
+          'You hear a man talking about a documentary he watched. What impressed him most?',
       passage:
-          '[Audio Transcript]\nWoman: Did you watch that documentary about the deep ocean last night?\n'
-          'Man: Yes, it was incredible. I knew the ocean was deep, but seeing those creatures living '
-          'at five thousand metres with no sunlight — it completely changed how I think about life on Earth.\n'
-          'Woman: I was more fascinated by the technology they used to film it.\n'
-          'Man: That was amazing too, but for me, it was those organisms that thrive in total darkness. '
-          'It makes you wonder what else is out there that we haven\'t discovered yet.',
+          '[Audio Transcript]\nI watched the most incredible documentary last night about the deep '
+          'ocean. I always knew the ocean was deep, but actually seeing those creatures living at five '
+          'thousand metres with absolutely no sunlight — it completely changed how I think about life '
+          'on Earth. The filming technology was amazing too, but for me, it was those organisms that '
+          'thrive in total darkness that really stood out. It makes you wonder what else is out there '
+          'that we haven\'t discovered yet.',
+      audioFile: 'assets/audio/exam_l2.mp3',
       answers: [
         'The filming technology used',
         'The depth of the ocean itself',
@@ -343,7 +346,7 @@ class MockExamExercises {
       ],
       correctAnswerIndex: 2,
       explanation:
-          'The man says "for me, it was those organisms that thrive in total darkness" — the creatures living without sunlight impressed him most.',
+          'He says "for me, it was those organisms that thrive in total darkness" — the creatures living without sunlight impressed him most.',
       difficulty: Difficulty.medium,
       type: ExerciseType.listeningComprehension,
       category: ExerciseCategory.listening,
@@ -355,10 +358,11 @@ class MockExamExercises {
       passage:
           '[Audio Transcript]\nI\'d been working in corporate finance for twelve years, and on paper '
           'everything looked perfect — good salary, bonuses, the whole package. But I\'d wake up every '
-          'Monday with this sinking feeling. Then my daughter asked me one day, "Mum, why are you always '
-          'tired and sad?" That was the moment everything clicked. I enrolled in a teacher training '
-          'programme that evening. Three years later, I\'m teaching maths at a secondary school and '
-          'I\'ve never been happier.',
+          'Monday with this sinking feeling in my stomach. Then one evening my daughter looked at me '
+          'and said, "Mum, why are you always tired and sad?" And that was the moment everything '
+          'clicked. I enrolled in a teacher training programme that very evening. Three years later, '
+          'I\'m teaching maths at a secondary school, and I\'ve honestly never been happier.',
+      audioFile: 'assets/audio/exam_l3.mp3',
       answers: [
         'She was made redundant from her finance job',
         'She wanted a higher salary',
@@ -382,6 +386,7 @@ class MockExamExercises {
           'Passengers holding tickets for this service should board the 14:35 to Birmingham New Street, '
           'where a connecting service to Manchester will be available from Platform 6. We apologise for '
           'any inconvenience caused. Alternatively, you may claim a full refund at the ticket office.',
+      audioFile: 'assets/audio/exam_l4.mp3',
       answers: [
         'Wait at the platform for a delayed service',
         'Take the 14:35 to Birmingham and connect from there',
