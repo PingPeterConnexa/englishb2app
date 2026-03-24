@@ -7,7 +7,7 @@ import '../features/home/screens/home_screen.dart';
 import '../features/practice/screens/practice_screen.dart';
 import '../features/practice/screens/exercise_screen.dart';
 import '../features/practice/screens/writing_practice_screen.dart';
-import '../features/practice/screens/speaking_practice_screen.dart';
+import '../features/practice/screens/cloze_part1_screen.dart';
 import '../features/mock_exam/screens/mock_exam_screen.dart';
 import '../features/mock_exam/screens/exam_session_screen.dart';
 import '../features/mock_exam/screens/exam_result_screen.dart';
@@ -73,9 +73,14 @@ final appRouter = GoRouter(
                   builder: (context, state) => const WritingPracticeScreen(),
                 ),
                 GoRoute(
-                  path: 'speaking',
+                  path: 'gap-fill',
                   parentNavigatorKey: _rootNavigatorKey,
-                  builder: (context, state) => const SpeakingPracticeScreen(),
+                  builder: (context, state) => const ClozePart1Screen(),
+                ),
+                GoRoute(
+                  path: 'cloze-part1',
+                  parentNavigatorKey: _rootNavigatorKey,
+                  builder: (context, state) => const ClozePart1Screen(),
                 ),
               ],
             ),

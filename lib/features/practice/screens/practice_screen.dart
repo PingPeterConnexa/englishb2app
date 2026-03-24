@@ -94,14 +94,15 @@ class PracticeScreen extends StatelessWidget {
                 const SizedBox(height: AppSpacing.md),
 
                 _CategoryCard(
-                  title: 'Speaking',
-                  subtitle: 'Topics, discussion, timed responses',
-                  icon: Icons.record_voice_over_rounded,
-                  color: AppColors.speaking,
+                  title: 'Gap fill',
+                  subtitle:
+                      'Multiple-choice gaps in short texts — 3 separate tasks',
+                  icon: Icons.view_list_rounded,
+                  color: AppColors.clozePart1,
                   exerciseCount: 3,
                   onTap: () {
                     HapticUtils.light();
-                    context.go('/practice/speaking');
+                    context.go('/practice/gap-fill');
                   },
                 ),
 

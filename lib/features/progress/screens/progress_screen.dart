@@ -144,9 +144,9 @@ class ProgressScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: AppSpacing.md),
                         _SkillBar(
-                          label: 'Speaking',
-                          value: progress.speakingScore,
-                          color: AppColors.speaking,
+                          label: 'Gap fill',
+                          value: progress.clozeScore,
+                          color: AppColors.clozePart1,
                         ),
                       ],
                     ),

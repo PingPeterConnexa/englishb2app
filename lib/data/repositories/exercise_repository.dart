@@ -23,9 +23,4 @@ class ExerciseRepository {
     await Future.delayed(const Duration(milliseconds: 300));
     return SampleExercises.writingPrompts;
   }
-
-  Future<List<SpeakingPromptModel>> getSpeakingPrompts() async {
-    await Future.delayed(const Duration(milliseconds: 300));
-    return SampleExercises.speakingPrompts;
-  }
 }

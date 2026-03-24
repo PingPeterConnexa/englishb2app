@@ -680,42 +680,6 @@ class SampleExercises {
     ),
   ];
 
-  static const List<SpeakingPromptModel> speakingPrompts = [
-    SpeakingPromptModel(
-      id: 's1',
-      topic: 'Travel and Cultural Experiences',
-      questions: [
-        'Describe a memorable trip you have taken. Where did you go and what made it special?',
-        'Do you think travelling is the best way to learn about other cultures? Why or why not?',
-        'How has tourism changed in recent years, and what effects has this had?',
-      ],
-      suggestedDurationSeconds: 120,
-      difficulty: Difficulty.medium,
-    ),
-    SpeakingPromptModel(
-      id: 's2',
-      topic: 'Education and Learning',
-      questions: [
-        'What do you think is the most important subject taught in schools today? Why?',
-        'How do you think education will change in the next twenty years?',
-        'Do you agree that learning should be fun, or is discipline more important?',
-      ],
-      suggestedDurationSeconds: 120,
-      difficulty: Difficulty.medium,
-    ),
-    SpeakingPromptModel(
-      id: 's3',
-      topic: 'Health and Lifestyle',
-      questions: [
-        'What do you do to stay healthy in your daily life?',
-        'Some people say that mental health is just as important as physical health. Do you agree?',
-        'How has the way people think about health changed in your lifetime?',
-      ],
-      suggestedDurationSeconds: 120,
-      difficulty: Difficulty.easy,
-    ),
-  ];
-
   static List<ExerciseModel> getAllExercises() => [
         ...readingExercises,
         ...useOfEnglishExercises,
@@ -731,8 +695,6 @@ class SampleExercises {
       case ExerciseCategory.listening:
         return listeningExercises;
       case ExerciseCategory.writing:
-        return [];
-      case ExerciseCategory.speaking:
         return [];
     }
   }

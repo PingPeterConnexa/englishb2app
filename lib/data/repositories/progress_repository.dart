@@ -32,7 +32,7 @@ class ProgressRepository {
     final result = isCorrect ? 1.0 : 0.0;
     const w = 0.2;
 
-    double? reading, listening, grammar, writing, speaking;
+    double? reading, listening, grammar, writing, cloze;
     switch (category) {
       case 'reading':
         reading = _progress!.readingScore * (1 - w) + result * w;
@@ -42,8 +42,8 @@ class ProgressRepository {
         listening = _progress!.listeningScore * (1 - w) + result * w;
       case 'writing':
         writing = _progress!.writingScore * (1 - w) + result * w;
-      case 'speaking':
-        speaking = _progress!.speakingScore * (1 - w) + result * w;
+      case 'clozePart1':
+        cloze = _progress!.clozeScore * (1 - w) + result * w;
     }
 
     _progress = _progress!.copyWith(
@@ -54,7 +54,7 @@ class ProgressRepository {
       listeningScore: listening,
       grammarScore: grammar,
       writingScore: writing,
-      speakingScore: speaking,
+      clozeScore: cloze,
       completedExercises: {
         ..._progress!.completedExercises,
         exerciseId: true,

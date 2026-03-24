@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We use the microphone to turn your spoken practice into text so you can review and check it.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Speech recognition converts what you say into text for self-review and grammar checking.</string>
 </dict>
 </plist>

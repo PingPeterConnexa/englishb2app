@@ -5,7 +5,6 @@ enum ExerciseType {
   readingComprehension,
   listeningComprehension,
   writingPrompt,
-  speakingPrompt,
 }
 
 enum ExerciseCategory {
@@ -13,7 +12,6 @@ enum ExerciseCategory {
   useOfEnglish,
   listening,
   writing,
-  speaking,
 }
 
 enum Difficulty { easy, medium, hard }
@@ -90,18 +88,3 @@ class WritingPromptModel {
   });
 }
 
-class SpeakingPromptModel {
-  final String id;
-  final String topic;
-  final List<String> questions;
-  final int suggestedDurationSeconds;
-  final Difficulty difficulty;
-
-  const SpeakingPromptModel({
-    required this.id,
-    required this.topic,
-    required this.questions,
-    this.suggestedDurationSeconds = 120,
-    required this.difficulty,
-  });
-}

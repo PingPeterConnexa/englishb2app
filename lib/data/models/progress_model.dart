@@ -4,7 +4,7 @@ class ProgressModel {
   final double listeningScore;
   final double grammarScore;
   final double writingScore;
-  final double speakingScore;
+  final double clozeScore;
   final int totalExercisesCompleted;
   final int totalCorrectAnswers;
   final int currentStreak;
@@ -19,7 +19,7 @@ class ProgressModel {
     this.listeningScore = 0,
     this.grammarScore = 0,
     this.writingScore = 0,
-    this.speakingScore = 0,
+    this.clozeScore = 0,
     this.totalExercisesCompleted = 0,
     this.totalCorrectAnswers = 0,
     this.currentStreak = 0,
@@ -30,24 +30,25 @@ class ProgressModel {
   });
 
   double get overallScore {
-    final scores = [readingScore, listeningScore, grammarScore, writingScore];
+    final scores = [
+      readingScore,
+      listeningScore,
+      grammarScore,
+      writingScore,
+      clozeScore,
+    ];
     if (scores.every((s) => s == 0)) return 0;
     final nonZero = scores.where((s) => s > 0);
     return nonZero.isEmpty ? 0 : nonZero.reduce((a, b) => a + b) / nonZero.length;
   }
 
   double get examReadiness {
-    final weights = {
-      readingScore: 0.25,
-      listeningScore: 0.25,
-      grammarScore: 0.3,
-      writingScore: 0.2,
-    };
-    double weighted = 0;
-    weights.forEach((score, weight) {
-      weighted += score * weight;
-    });
-    return weighted.clamp(0, 1);
+    return (readingScore * 0.22 +
+            listeningScore * 0.22 +
+            grammarScore * 0.25 +
+            writingScore * 0.16 +
+            clozeScore * 0.15)
+        .clamp(0, 1);
   }
 
   double get accuracy {
@@ -61,7 +62,7 @@ class ProgressModel {
         'listeningScore': listeningScore,
         'grammarScore': grammarScore,
         'writingScore': writingScore,
-        'speakingScore': speakingScore,
+        'clozeScore': clozeScore,
         'totalExercisesCompleted': totalExercisesCompleted,
         'totalCorrectAnswers': totalCorrectAnswers,
         'currentStreak': currentStreak,
@@ -77,7 +78,9 @@ class ProgressModel {
         listeningScore: (map['listeningScore'] as num?)?.toDouble() ?? 0,
         grammarScore: (map['grammarScore'] as num?)?.toDouble() ?? 0,
         writingScore: (map['writingScore'] as num?)?.toDouble() ?? 0,
-        speakingScore: (map['speakingScore'] as num?)?.toDouble() ?? 0,
+        clozeScore: (map['clozeScore'] as num?)?.toDouble() ??
+            (map['speakingScore'] as num?)?.toDouble() ??
+            0,
         totalExercisesCompleted:
             map['totalExercisesCompleted'] as int? ?? 0,
         totalCorrectAnswers: map['totalCorrectAnswers'] as int? ?? 0,
@@ -97,7 +100,7 @@ class ProgressModel {
     double? listeningScore,
     double? grammarScore,
     double? writingScore,
-    double? speakingScore,
+    double? clozeScore,
     int? totalExercisesCompleted,
     int? totalCorrectAnswers,
     int? currentStreak,
@@ -112,7 +115,7 @@ class ProgressModel {
         listeningScore: listeningScore ?? this.listeningScore,
         grammarScore: grammarScore ?? this.grammarScore,
         writingScore: writingScore ?? this.writingScore,
-        speakingScore: speakingScore ?? this.speakingScore,
+        clozeScore: clozeScore ?? this.clozeScore,
         totalExercisesCompleted:
             totalExercisesCompleted ?? this.totalExercisesCompleted,
         totalCorrectAnswers: totalCorrectAnswers ?? this.totalCorrectAnswers,

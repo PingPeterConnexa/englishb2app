@@ -42,7 +42,8 @@ class AppColors {
   static const grammar = Color(0xFF2563EB);
   static const listening = Color(0xFF06B6D4);
   static const writing = Color(0xFFF59E0B);
-  static const speaking = Color(0xFFEC4899);
+  /// Gap-fill practice (multiple-choice gaps).
+  static const clozePart1 = Color(0xFFEC4899);
 
   // Gradients
   static const primaryGradient = LinearGradient(

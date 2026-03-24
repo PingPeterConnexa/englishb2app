@@ -22,12 +22,12 @@ class FirebaseService {
   static const String useOfEnglishPath = 'exercises/use_of_english';
   static const String listeningPath = 'exercises/listening';
   static const String writingPath = 'exercises/writing';
-  static const String speakingPath = 'exercises/speaking';
+  static const String clozePart1Path = 'exercises/cloze_part1';
 
   /// Remote Config keys for premium feature flags
   static const String flagUnlimitedMockExams = 'premium_unlimited_mock_exams';
   static const String flagAdvancedStats = 'premium_advanced_stats';
-  static const String flagAiSpeakingFeedback = 'premium_ai_speaking_feedback';
+  static const String flagAiClozeHints = 'premium_ai_cloze_hints';
   static const String flagPersonalStudyPlan = 'premium_personal_study_plan';
 
   // Future<void> initialize() async {
@@ -41,7 +41,7 @@ class FirebaseService {
   //   await remoteConfig.setDefaults({
   //     flagUnlimitedMockExams: false,
   //     flagAdvancedStats: false,
-  //     flagAiSpeakingFeedback: false,
+  //     flagAiClozeHints: false,
   //     flagPersonalStudyPlan: false,
   //   });
   //   await remoteConfig.fetchAndActivate();
